@@ -19,7 +19,7 @@ class Person:
 
     @name.setter
     def name(self, name:str): 
-        if self._name != name and name >= 3:
+        if self._name != name and len(name) >= 3:
             self._name = name
 
     @date.setter
