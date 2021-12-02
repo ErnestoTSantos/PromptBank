@@ -37,10 +37,12 @@ class Bank:
 
         return False
 
-    def update_client(self, client, count):
+    def update_client(self, client, count, oldName=None):
         while len(self._client):
             value = 0
             if self._client[value]["Name"] == client:
                 self._client[value]["Count"] = count
                 break
+            if self._client[value]["Name"] == oldName:
+                self._client[value]["Name"] = client
             value += 1

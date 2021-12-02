@@ -96,6 +96,15 @@ def modify_count(client, count):
 
                 break
 
+def modifyPerson(oldPerson, newPerson, personActions, count):
+    for j in information:
+        if j["Client"] == oldPerson:
+            j["Client"] = newPerson
+            j["Client_actions"] = personActions
+            for i in banks:
+                if i["bank_actions"].autenticate(oldPerson, count.agency, count.count):
+                    i["bank_actions"].update_client(newPerson, count, oldPerson)
+
 while True:
     system("cls")
 
@@ -279,7 +288,9 @@ while True:
                         match action:
                             case "name":
                                 new_name = input("Digite o novo nome: ").strip().title()
+                                oldPerson = Client_actions.name
                                 Client_actions.name = new_name
+                                modifyPerson(oldPerson, new_name, Client_actions, Count_actions)
 
                             case "age":
                                 new_date = input("Digite a nova data de nascimento: ex: dd/mm/yyyy:").strip()
@@ -308,7 +319,6 @@ while True:
                                 print(f"O cpf do cliente é: {Client_actions.cpf}")
 
                             case "date":
-                                print(type(Client_actions.date))
                                 print(f"A data do aniversário do cliente é: {Client_actions.date}")
 
                             case "count":
@@ -389,7 +399,9 @@ while True:
                         match action:
                             case "name":
                                 new_name = input("Digite o novo nome: ").strip().title()
+                                oldPerson = Client_actions.name
                                 Client_actions.name = new_name
+                                modifyPerson(oldPerson, new_name, Client_actions, Count_actions)
 
                             case "age":
                                 new_date = input("Digite a nova data de criação da empresa: ex: dd/mm/yyyy: ").strip()
